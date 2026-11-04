@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+/* ───────────────────────────────────────────────
+   ARLE City design tokens
+   Every industry page uses these – change here only.
+   ─────────────────────────────────────────────── */
+@theme {
+  --color-navy-950: #070f20;
+  --color-navy-900: #0b1730;
+  --color-navy-800: #101d3a;
+  --color-navy-700: #182a52;
+  --color-gold-200: #fbeab5;
+  --color-gold-300: #f5d77a;
+  --color-gold-400: #ebc566;
+  --color-gold-500: #e0b352;
+
+  --font-heading: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-glass-sm: 1rem;
+  --radius-glass: 1.5rem;
+  --radius-glass-lg: 1.75rem;
+
+  --shadow-glass: 0 8px 32px rgba(3, 8, 20, 0.45);
+  --shadow-gold: 0 8px 36px rgba(245, 215, 122, 0.35);
+  --shadow-gold-lg: 0 10px 48px rgba(245, 215, 122, 0.55);
+  --shadow-pin: 0 6px 16px rgba(3, 8, 20, 0.45);
+
+  --animate-pin-pulse: pin-pulse 2.6s ease-out infinite;
+  --animate-pin-ping: pin-ping 1.3s ease-out infinite;
+  --animate-ken-burns: ken-burns 38s ease-in-out infinite alternate;
+  --animate-plane: plane-fly 70s linear infinite;
+}
+
+:root {
+  --gold-gradient: linear-gradient(135deg, #f5d77a 0%, #e0b352 100%);
+  --glass-bg: rgba(11, 23, 48, 0.62);
+  --glass-bg-strong: rgba(11, 23, 48, 0.82);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --space-edge: 1rem;
+  --inv: 1;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pin-pulse {
+  0% { transform: scale(1); opacity: 0.55; }
+  70%, 100% { transform: scale(1.9); opacity: 0; }
+}
+@keyframes pin-ping {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(2.8); opacity: 0; }
+}
+@keyframes ken-burns {
+  from { transform: scale3d(1, 1, 1) translate3d(0, 0, 0); }
+  to { transform: scale3d(1.1, 1.1, 1) translate3d(-1.2%, -0.8%, 0); }
+}
+@keyframes plane-fly {
+  0% { transform: translate3d(0, 0, 0); opacity: 0; }
+  4% { opacity: 0.85; }
+  50% { transform: translate3d(20vw, -14px, 0); opacity: 0.85; }
+  96% { opacity: 0.85; }
+  100% { transform: translate3d(42vw, 6px, 0); opacity: 0; }
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background: #0b1730;
+  color: #fff;
+  font-family: var(--font-sans);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3 { font-family: var(--font-heading); }
+
+/* Glass surfaces */
+@utility glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: var(--shadow-glass);
+}
+@utility glass-strong {
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  box-shadow: var(--shadow-glass);
+}
+@utility glass-light {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 18px rgba(3, 8, 20, 0.3);
+}
+@utility bg-gold-gradient { background-image: var(--gold-gradient); }
+@utility text-gold-gradient {
+  background-image: var(--gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--color-gold-300);
+    outline-offset: 3px;
+  }
+}
+
+/* Panorama surface */
+.pan-surface { touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; }
+.pan-surface[data-dragging="true"] { cursor: grabbing; }
+.pan-content { transform-origin: 0 0; backface-visibility: hidden; }
+
+/* Slim scrollbars inside drawers */
+.thin-scroll { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.25) transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
