@@ -79,7 +79,9 @@ export const industries: Industry[] = [
     icon: Hamburger,
     description: "Quick-service dining and drive-through convenience.",
     position: { x: 40.2, y: 76 },
-    status: "coming-soon",
+    status: "ready",
+    route: "/city/fast-food",
+    insideScene: "fast-food",
   },
   {
     id: "commercial-laundry",
