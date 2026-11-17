@@ -39,7 +39,9 @@ export const industries: Industry[] = [
     icon: GraduationCap,
     description: "Higher education, research labs and vibrant campus life.",
     position: { x: 29.5, y: 36 },
-    status: "coming-soon",
+    status: "ready",
+    route: "/city/college",
+    insideScene: "college",
   },
   {
     id: "hotel",
